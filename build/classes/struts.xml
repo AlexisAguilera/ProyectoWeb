@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation"
+        value="false" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.custom.i18n.resources"
+        value="ApplicationResources" />
+ 
+    <package name="default" extends="struts-default" namespace="/">
+    
+    
+        <action name="login"
+            class="Web.Vista.LoginAction">
+            <result name="success">admin.jsp</result>
+            <result name="error">login.jsp</result>
+        </action>
+       
+
+          <action name="logOut">
+            <result>login.jsp</result>
+        </action>
+        
+          <action name="admin">
+            <result>admin.jsp</result>
+        </action>
+        
+           <action name="agregarPelicula" class="Web.Vista.MovieAction">
+        	<result name="success">agregarPeli.jsp</result>
+        	</action>
+        	
+        	<action name="verPeliculasDisponibles" class="Web.Vista.MovieAction">
+        	<result name="success">pelisDisponibles.jsp</result>
+        	</action>
+        	
+        <action name="doEdit"
+        	class="Web.Vista.MovieAction" method="edit">
+        	<result name="success" type="chain">verPeliculasDisponibles</result>
+        </action>
+        
+        	
+        	
+        <action name="add" class="Web.Vista.MovieAction" method="add">
+        	<result name="success" type="chain">verPeliculasDisponibles</result>
+        	<result name="input" type="chain">verPeliculasDisponibles</result>
+        </action>
+        
+        
+        <action name="delete"
+        	class="Web.Vista.MovieAction" method="delete">
+        	<result name="success" type="chain">verPeliculasDisponibles</result>
+        </action>
+        
+        
+        <action name="show" class="Web.Vista.MovieAction" method="show">
+        	<result name="success">pelicula.jsp</result></action>
+        	
+        <action name="edit"
+        	class="Web.Vista.MovieAction" method="show">
+        	<result name="success">edit.jsp</result>
+        </action>
+        
+        
+        <action name="visitantes" class="Web.Vista.MovieAction">
+        	<result name="success">visitantes.jsp</result></action>
+       
+       
+        <action name="doEdit"
+        	class="Web.Vista.MovieAction" method="edit">
+        	<result name="success" type="chain">verPeliculasDisponibles</result>
+        </action>
+
+    </package>
+</struts>
